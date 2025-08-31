@@ -1,0 +1,16 @@
+@startuml use_case_keranos_pdpa
+left to right direction
+
+actor "Admin" as admin
+actor "Data Protection Officer" as dpo
+actor "User" as user
+
+rectangle PDPA_System {
+  usecase "User Registration" as reg
+  usecase "User Login" as login
+  usecase "User Logout" as logout
+}
+
+admin --> reg_local
+
+@enduml_local
