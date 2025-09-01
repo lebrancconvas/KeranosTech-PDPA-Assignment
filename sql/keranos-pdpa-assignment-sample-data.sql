@@ -42,5 +42,11 @@ VALUES (3, 'CONTRACT', false);
 INSERT INTO consent_records(fk_data_subject_id, consent_type, is_consent_active)
 VALUES (3, 'ANALYTICS', false);
 
+-- DATA REQUESTS: CREATE
+INSERT INTO data_requests(fk_data_subject_id, request_type, request_status, details)
+VALUES (3, 'WITHDRAW', 'PENDING', 'Withdraw Consent for Marketing Communications Consent.');
+
+INSERT INTO data_requests(fk_data_subject_id, request_type, request_status, details)
+VALUES (2, 'ACCESS', 'PENDING', 'Request for accessing the personal data.');
 
 
