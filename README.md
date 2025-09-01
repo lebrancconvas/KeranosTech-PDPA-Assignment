@@ -11,26 +11,24 @@ Assignment Project for "Full-Stack Developer (Junior)" at "Keranos Tech Co., Ltd
 ## URL (Development)
 
 - Front-End URL: [https://keranos-pdpa.netlify.app/](https://keranos-pdpa.netlify.app/)
-- Back-End (API) URL: [https://keranostech-assignment-pdpa.onrender.com/](https://keranostech-assignment-pdpa.onrender.com/)
+- Back-End (API) URL: [https://keranostech-assignment-pdpa.onrender.com/api](https://keranostech-assignment-pdpa.onrender.com/api)
 
 ## Project Setup (for Local Development)
 
-### Database
+### Requirement
 
-- Requirement
-  - Docker Compose (Docker)
-- Steps
-  - `cd backend` for accessing to the backend folder.
-  - run `docker compose up` for opening the database (PostgreSQL) connection.
+- **PNPM**
+- **Docker** (for using **Docker Compose** to open the database connection for local development.)
 
-### Back-End
+### Steps
 
-- Requirement
-  - PNPM (or NPM, Yarn)
-  - run `pnpm install` (in case you use PNPM) to install the project module.
-  
-
-### Front-End
+You can do these steps from root directory of this project.
+- run `pnpm install:all` for installing the whole project.
+- run `pnpm run db:open` for opening the database connection for local development.
+  - run `pnpm run db:close` for closing the database connection that you've opened.
+- run `pnpm run dev` for running on local development mode for the entire project in both ***backend*** and ***frontend*** module.
+  - or run `pnpm run dev:backend` for running only ***backend*** module.
+  - or run `pnpm run dev:frontend` for running only ***frontend*** module.
 
 ## Tech Stack
 
@@ -190,6 +188,26 @@ ref: data_subjects.data_subject_id < data_requests.fk_data_subject_id
 ```
 
 ## API Documentation
+
+### Users & User Authentication Routes
+
+- **Authentication**
+  - (POST) `/auth/register`
+  - (POST) `/auth/login`
+- **Users**
+  - (GET) `/users`
+  - (GET) `/me`
+
+### Data Subjects Routes
+
+- (POST) `/data_subjects`
+- (GET) `/data_subjects`
+- (GET) `/data_subjects/<data_subject_id>`
+- (PUT) `/data_subjects/<data_subject_id>`
+- (GET) `/data_subjects/<data_subject_id>/consents`
+- (PUT) `/data_subjects/<data_subject_id>/consents`
+
+### Consent Requests
 
 ## Assumptions
 
