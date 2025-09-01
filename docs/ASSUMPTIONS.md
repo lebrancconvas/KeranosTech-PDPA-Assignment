@@ -30,4 +30,106 @@
   - Additional jobs
     - Manage Consent for each data subjects.
   
+## Test Plan
 
+### Test Data
+
+- **users**
+  - user_id: 1
+    - email: "admin@pdpa.com"
+    - password: "Admin123!"
+    - user_role: "ADMIN"
+
+- **data_subjects**
+  - data_subject_id: 1
+    - national_id: "1234567890123"
+    - name: "สมชาย ใจดี"
+    - email: "somchai@email.com"
+    - phone: "0812345678"
+    - is_restricted: false
+  - data_subject_id: 2
+    - national_id: "9876543210987"
+    - name: "สมหญิง รักงาน"
+    - email: "somying@email.com"
+    - phone: "0823456789"
+    - is_restricted: false
+  - data_subject_id: 3
+    - national_id: "1111111111118"
+    - name: "มานี มีสุข"
+    - email: "manee@email.com"
+    - phone: "0834567890"
+    - is_restricted: false
+
+- **consent_records**
+  - consent_record_id: 1
+    - fk_data_subject_id: 1
+    - consent_type: "MARKETING"
+    - is_consent_active: true
+  - consent_record_id: 2
+    - fk_data_subject_id: 1
+    - consent_type: "SERVICE"
+    - is_consent_active: true
+  - consent_record_id: 3
+    - fk_data_subject_id: 1
+    - consent_type: "LEGAL"
+    - is_consent_active: true
+  - consent_record_id: 4
+    - fk_data_subject_id: 1
+    - consent_type: "CONTRACT"
+    - is_consent_active: true
+  - consent_record_id: 5
+    - fk_data_subject_id: 1
+    - consent_type: "ANALYTICS"
+    - is_consent_active: true
+  - consent_record_id: 6
+    - fk_data_subject_id: 2
+    - consent_type: "MARKETING"
+    - is_consent_active: false
+  - consent_record_id: 7
+    - fk_data_subject_id: 2
+    - consent_type: "SERVICE"
+    - is_consent_active: false
+  - consent_record_id: 8
+    - fk_data_subject_id: 2
+    - consent_type: "LEGAL"
+    - is_consent_active: false
+  - consent_record_id: 9
+    - fk_data_subject_id: 2
+    - consent_type: "CONTRACT"
+    - is_consent_active: false
+  - consent_record_id: 10
+    - fk_data_subject_id: 2
+    - consent_type: "ANALYTICS"
+    - is_consent_active: false
+  - consent_record_id: 11
+    - fk_data_subject_id: 3
+    - consent_type: "MARKETING"
+    - is_consent_active: true
+  - consent_record_id: 12
+    - fk_data_subject_id: 3
+    - consent_type: "SERVICE"
+    - is_consent_active: true
+  - consent_record_id: 13
+    - fk_data_subject_id: 3
+    - consent_type: "LEGAL"
+    - is_consent_active: true
+  - consent_record_id: 14
+    - fk_data_subject_id: 3
+    - consent_type: "CONTRACT"
+    - is_consent_active: false
+  - consent_record_id: 15
+    - fk_data_subject_id: 3
+    - consent_type: "ANALYTICS"
+    - is_consent_active: false
+
+- **data_requests**
+  - data_request_id: 1
+    - fk_data_subject_id: 3
+    - request_type: "WITHDRAW"
+    - request_pending: "PENDING"
+    - details: "Withdraw Consent for Marketing Communications Consent."
+  - data_request_id: 2
+    - fk_data_subject_id: 2
+    - request_type: "ACCESS"
+    - request_pending: "PENDING"
+    - details: "Request for accessing the personal data."
