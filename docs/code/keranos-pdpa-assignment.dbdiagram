@@ -1,0 +1,112 @@
+// Enum Section
+
+enum user_role_enum {
+  ADMIN
+  DPO
+  USER
+}
+
+enum consent_type_enum {
+  MARKETING
+  SERVICE
+  LEGAL
+  CONTRACT
+  ANALYTICS
+}
+
+enum request_type_enum {
+  ACCESS
+  RECTIFICATION
+  ERASURE
+  RESTRICT
+  PORTABILITY
+  INFORMED
+  WITHDRAW
+}
+
+enum request_status_enum {
+  PENDING
+  PROGRESS
+  COMPLETED
+  REJECTED
+}
+
+enum action_type_enum {
+  USER_REGISTRATION
+  USER_LOGIN
+  USER_LOGOUT
+  DATA_SUBJECT_CREATE
+  DATA_SUBJECT_READ
+  DATA_SUBJECT_UPDATE
+  DATA_SUBJECT_DELETE
+  CONSENT_UPDATE
+  REQUEST_CREATE
+  REQUEST_READ
+  REQUEST_UPDATE
+  REQUEST_DELETE
+}
+
+enum target_type_enum {
+  USER
+  SUBJECT
+  CONSENT
+  REQUEST
+}
+
+// Table Design Section.
+
+Table users {
+  user_id serial4 [primary key, not null, unique]
+  email varchar(100) [not null, unique]
+  password varchar(18) [not null]
+  user_role user_role_enum
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table data_subjects {
+  data_subject_id serial4 [primary key, not null, unique]
+  national_id varchar(13) [not null, unique]
+  name varchar(300) [not null]
+  email varchar(100) [not null]
+  phone varchar(10) [not null]
+  is_restricted bool [default: false]
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table consent_records {
+  consents_record_id serial4 [primary key, not null, unique]
+  fk_data_subject_id int4
+  consent_type consent_type_enum
+  is_consent_active bool [default: false]
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+Table data_requests {
+  data_request_id serial4 [primary key, not null, unique]
+  fk_data_subject_id int4
+  request_type request_type_enum 
+  request_status request_status_enum [default: 'pending']
+  details text
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+  updated_at timestamp [default: 'CURRENT_TIMESTAMP']
+  request_due_date timestamp
+}
+
+Table audit_logs {
+  audit_log_id serial4 [primary key, not null, unique]
+  fk_user_id int4
+  action_type action_type_enum
+  target_type target_type_enum
+  target_id int4
+  details text
+  created_at timestamp [default: 'CURRENT_TIMESTAMP']
+}
+
+// Foreign Keys Reference Section.
+
+ref: data_subjects.data_subject_id < consent_records.fk_data_subject_id
+ref: users.user_id < audit_logs.fk_user_id
+ref: data_subjects.data_subject_id < data_requests.fk_data_subject_id
