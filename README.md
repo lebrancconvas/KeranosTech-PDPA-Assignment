@@ -13,6 +13,25 @@ Assignment Project for "Full-Stack Developer (Junior)" at "Keranos Tech Co., Ltd
 - Front-End URL: [https://keranos-pdpa.netlify.app/](https://keranos-pdpa.netlify.app/)
 - Back-End (API) URL: [https://keranostech-assignment-pdpa.onrender.com/](https://keranostech-assignment-pdpa.onrender.com/)
 
+## Project Setup (for Local Development)
+
+### Database
+
+- Requirement
+  - Docker Compose (Docker)
+- Steps
+  - `cd backend` for accessing to the backend folder.
+  - run `docker compose up` for opening the database (PostgreSQL) connection.
+
+### Back-End
+
+- Requirement
+  - PNPM (or NPM, Yarn)
+  - run `pnpm install` (in case you use PNPM) to install the project module.
+  
+
+### Front-End
+
 ## Tech Stack
 
 ### Programming Language
@@ -34,6 +53,16 @@ Assignment Project for "Full-Stack Developer (Junior)" at "Keranos Tech Co., Ltd
 ### Database Manager
 
 - DBeaver
+
+### Containerization
+
+- Docker (Docker Compose)
+
+### Deployment
+
+- Front-End: Netlify
+- Back-End: Render
+- Database: Render
 
 ## Software Design
 
