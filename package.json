@@ -1,0 +1,20 @@
+{
+  "name": "keranos-pdpa-assignment",
+  "version": "1.0.0",
+  "description": "Keranos Tech's Full-Stack Developer (Junior) Assignment ~ PDPA Management System.",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "pnpm install",
+    "dev": "concurrently \"pnpm dev:backend\" \"pnpm dev:frontend\"",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
