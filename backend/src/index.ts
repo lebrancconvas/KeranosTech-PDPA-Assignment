@@ -1,5 +1,5 @@
 import express from "express";
-import router from "./router/index.js";
+import router from "./router/router.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import morgan from "morgan";
