@@ -1,0 +1,42 @@
+import type { Request, Response } from "express";
+import type { IDataSubject } from "../@types/data-subject.interface.js";
+import { 
+  createDataSubjectModel
+} from "../models/data-subject.model.js";
+
+// - (POST) `/data_subjects`
+export const createDataSubjectController = async (req: Request, res: Response) => {  
+  try {
+    const { national_id, name, email, phone }: IDataSubject = req.body;
+    const responseData = await createDataSubjectModel({ national_id, name, email, phone });
+    res.status(201).send(`[SUCCESS] Data Subject Create at data_subject_id: ${responseData.id}`);
+  } catch(err) {
+    res.status(500).send(`[ERROR] Cannot create Subject Data`);
+    console.error(err);
+  }
+};
+
+// - (GET) `/data_subjects`
+export const readDataSubjectController = (req: Request, res: Response) => {
+
+};
+
+// - (GET) `/data_subjects/<data_subject_id>`
+export const readDataSubjectByIdController = (req: Request, res: Response) => {
+
+};
+
+// - (PUT) `/data_subjects/<data_subject_id>`
+export const updateDataSubjectByIdController = (req: Request, res: Response) => {
+  
+};
+
+// - (GET) `/data_subjects/<data_subject_id>/consents`
+export const readDataSubjectConsentByIdController = (req: Request, res: Response) => {
+
+};
+
+// - (PUT) `/data_subjects/<data_subject_id>/consents`
+export const updateDataSubjectConsentActiveByIdController = (req: Request, res: Response) => {
+
+};
