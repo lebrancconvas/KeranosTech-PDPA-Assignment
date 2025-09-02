@@ -4,7 +4,8 @@ import {
   readDataSubjectController,
   readDataSubjectByIdController,
   readDataSubjectConsentByIdController,
-  updateDataSubjectByIdController
+  updateDataSubjectByIdController,
+  updateDataSubjectConsentActiveByIdController
 } from "../controllers/data-subject.controller.js";
 
 const router: Router = express.Router();
@@ -30,5 +31,8 @@ router.get("/data_subjects/:data_subject_id/consents", (req: Request, res: Respo
 router.put("/data_subjects/:data_subject_id", (req: Request, res: Response) => {
   updateDataSubjectByIdController(req, res);
 });
+router.put("/data_subjects/:data_subject_id/consents", (req: Request, res: Response) => {
+  updateDataSubjectConsentActiveByIdController(req, res);
+});
 
-export default router;
+export default router; 

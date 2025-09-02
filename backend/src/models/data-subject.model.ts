@@ -86,6 +86,16 @@ export const readDataSubjectConsentByIdModel = async (dataSubjectID: number) => 
 };
 
 // - (PUT) `/data_subjects/<data_subject_id>/consents`
-export const updateDataSubjectConsentActiveByIdModel = () => {
+export const updateDataSubjectConsentActiveByIdModel = async (fkDataSubjectID: number, consentData: IConsent) => {
+  const { consent_type, is_consent_active } = consentData;
+  
+  const query = `
+    UPDATE consent_records
+    SET is_consent_active = $3
+    WHERE fk_data_subject_id = $1 AND consent_type = $2;
+  `;
 
+  const values = [fkDataSubjectID, consent_type, is_consent_active];
+
+  await pool.query(query, values);
 };

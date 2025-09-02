@@ -11,7 +11,8 @@ import {
   readDataSubjectModel,
   readDataSubjectByIdModel,
   readDataSubjectConsentByIdModel,
-  updateDataSubjectByIdModel
+  updateDataSubjectByIdModel,
+  updateDataSubjectConsentActiveByIdModel
 } from "../models/data-subject.model.js";
 
 // - (POST) `/data_subjects`
@@ -103,6 +104,19 @@ export const readDataSubjectConsentByIdController = async (req: Request, res: Re
 };
 
 // - (PUT) `/data_subjects/<data_subject_id>/consents`
-export const updateDataSubjectConsentActiveByIdController = (req: Request, res: Response) => {
-
+export const updateDataSubjectConsentActiveByIdController = async (req: Request, res: Response) => {
+  try {
+    const dataSubjectID = req.params.data_subject_id;
+    if(dataSubjectID) {
+      const dataSubjectIDInt = parseInt(dataSubjectID);
+      const { consent_type, is_consent_active }: IConsent = req.body;
+      await updateDataSubjectConsentActiveByIdModel(dataSubjectIDInt, { consent_type, is_consent_active });
+      res.status(200).send({ data: `Data Subject Consent: ${consent_type} update at data_subject_id: ${dataSubjectIDInt}` });
+    } else {
+      res.status(422).send({ error: `Data Subject ID is undefined.` });
+    }
+  } catch(err) {
+    res.status(500).send({ error: `Cannot update data subject's consent data.` });
+    console.error(err);
+  }
 };
