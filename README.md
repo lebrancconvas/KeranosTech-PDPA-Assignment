@@ -209,7 +209,15 @@ ref: data_subjects.data_subject_id < data_requests.fk_data_subject_id
 
 ### Data Requests Routes
 
-- 
+- (POST) `/data_requests`
+- (GET) `/data_requests`
+- (GET) `/data_requests/<request_id>`
+- (PUT) `/data_requests/<request_id>/status`
+
+### Audit Logs
+
+- (POST) `/audit_logs`
+- (GET) `/audit_logs`
 
 ## Known Limitations & Future Improvements
 
