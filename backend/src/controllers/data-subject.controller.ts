@@ -5,6 +5,7 @@ import {
   createDataSubjectConsentModel,
   readDataSubjectModel,
   readDataSubjectByIdModel,
+  readDataSubjectConsentByIdModel
 } from "../models/data-subject.model.js";
 
 // - (POST) `/data_subjects`
@@ -36,7 +37,7 @@ export const createDataSubjectController = async (req: Request, res: Response) =
 export const readDataSubjectController = async (req: Request, res: Response) => {
   try {
     const data = await readDataSubjectModel();
-    res.status(200).send({ data: data });
+    res.status(200).send({ data });
   } catch(err) {
     res.status(500).send({ error: `Cannot read Subject Data` });
     console.error(err);
@@ -50,7 +51,7 @@ export const readDataSubjectByIdController = async (req: Request, res: Response)
     if(dataSubjectID) {
       const dataSubjectIDInt = parseInt(dataSubjectID);
       const data = await readDataSubjectByIdModel(dataSubjectIDInt);
-      res.status(200).send({ data: data });
+      res.status(200).send({ data });
     } else {
       res.status(422).send({ error: `Data Subject ID is undefined.` });
     }
@@ -66,8 +67,20 @@ export const updateDataSubjectByIdController = (req: Request, res: Response) => 
 };
 
 // - (GET) `/data_subjects/<data_subject_id>/consents`
-export const readDataSubjectConsentByIdController = (req: Request, res: Response) => {
-
+export const readDataSubjectConsentByIdController = async (req: Request, res: Response) => {
+  try {
+    const dataSubjectID = req.params.data_subject_id;
+    if(dataSubjectID) {
+      const dataSubjectIDInt = parseInt(dataSubjectID);
+      const data = await readDataSubjectConsentByIdModel(dataSubjectIDInt);
+      res.status(200).send({ data });
+    } else {
+      res.status(422).send({ error: `Data Subject ID is undefined.` });
+    }
+  } catch(err) {
+    res.status(500).send({ error: `Cannot read data subject's consents data.` });
+    console.error(err);
+  }
 };
 
 // - (PUT) `/data_subjects/<data_subject_id>/consents`

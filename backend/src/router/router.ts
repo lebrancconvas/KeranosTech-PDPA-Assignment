@@ -2,7 +2,8 @@ import express, { type Router, type Request, type Response } from "express";
 import {
   createDataSubjectController,
   readDataSubjectController,
-  readDataSubjectByIdController
+  readDataSubjectByIdController,
+  readDataSubjectConsentByIdController
 } from "../controllers/data-subject.controller.js";
 
 const router: Router = express.Router();
@@ -21,6 +22,9 @@ router.get("/data_subjects", (req: Request, res: Response) => {
 });
 router.get("/data_subjects/:data_subject_id", (req: Request, res: Response) => {
   readDataSubjectByIdController(req, res);
+});
+router.get("/data_subjects/:data_subject_id/consents", (req: Request, res: Response) => {
+  readDataSubjectConsentByIdController(req, res);
 });
 
 export default router;

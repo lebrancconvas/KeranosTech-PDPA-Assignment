@@ -63,7 +63,10 @@ export const updateDataSubjectByIdModel = () => {
 // - (GET) `/data_subjects/<data_subject_id>/consents`
 export const readDataSubjectConsentByIdModel = async (dataSubjectID: number) => {
   const query = `
-  
+    SELECT data_subject_id, national_id, name, email, phone, is_restricted, consent_type, is_consent_active
+    FROM data_subjects
+    LEFT JOIN consent_records ON data_subjects.data_subject_id = consent_records.fk_data_subject_id
+    WHERE consent_records.fk_data_subject_id = $1;  
   `;
 
   const value = [dataSubjectID];
