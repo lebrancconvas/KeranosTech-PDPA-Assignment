@@ -207,7 +207,9 @@ ref: data_subjects.data_subject_id < data_requests.fk_data_subject_id
 - (GET) `/data_subjects/<data_subject_id>/consents`
 - (PUT) `/data_subjects/<data_subject_id>/consents`
 
-### Consent Requests
+### Data Requests Routes
+
+- 
 
 ## Assumptions
 
