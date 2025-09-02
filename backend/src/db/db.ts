@@ -13,12 +13,16 @@ const devConfig: PoolConfig = {
 };
 
 const localConfig: PoolConfig = {
-  connectionString: process.env.DATABASE_URL
+  user: process.env.DATABASE_USERNAME,
+  host: process.env.DATABASE_HOST,
+  database: process.env.DATABASE_NAME,
+  password: process.env.DATABASE_PASSWORD,
+  port: 5432
 };
 
 const pool = new Pool(process.env.NODE_ENV === 'development' ? localConfig : devConfig);
 
-export const connection = async() => {
+export const DB = async() => {
   try {
     const client = await pool.connect();
     console.log(`[SUCCESS] Connect to database success!`);
