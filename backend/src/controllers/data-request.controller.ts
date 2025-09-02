@@ -1,0 +1,21 @@
+import type { Request, Response } from "express";
+
+// - (POST) `/data_requests`
+export const createDataRequestController = (req: Request, res: Response) => {
+  
+};
+
+// - (GET) `/data_requests`
+export const readDataRequestController = (req: Request, res: Response) => {
+
+};
+
+// - (GET) `/data_requests/<request_id>`
+export const readDataRequestByIdController = (req: Request, res: Response) => {
+
+};
+
+// - (PUT) `/data_requests/<request_id>/status`
+export const updateDataRequestStatusByIdController = (req: Request, res: Response) => {
+
+};
