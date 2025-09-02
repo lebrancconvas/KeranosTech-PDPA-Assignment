@@ -1,19 +1,33 @@
 import type { Request, Response } from "express";
-import type { IDataSubject } from "../@types/data-subject.interface.js";
+import type { IConsent, IDataSubject, IDataSubjectWithConsent } from "../@types/data-subject.interface.js";
 import { 
   createDataSubjectModel,
+  createDataSubjectConsentModel,
   readDataSubjectModel,
-  readDataSubjectByIdModel
+  readDataSubjectByIdModel,
 } from "../models/data-subject.model.js";
 
 // - (POST) `/data_subjects`
 export const createDataSubjectController = async (req: Request, res: Response) => {  
   try {
-    const { national_id, name, email, phone }: IDataSubject = req.body;
+    const { national_id, name, email, phone, consents }: IDataSubjectWithConsent = req.body;
+    
     const responseData = await createDataSubjectModel({ national_id, name, email, phone });
-    res.status(201).send(`[SUCCESS] Data Subject Create at data_subject_id: ${responseData.id}`);
+    res.status(201).send({ data: `Create data subject success at data_subject_id: ${responseData.rows[0].data_subject_id}` });
+    
+    for(let i = 0; i < consents.length; i++) {
+      const consentType = consents[i]?.consent_type;
+      const isConsentActive = consents[i]?.is_consent_active;
+
+      if(typeof consentType !== "undefined" && typeof isConsentActive !== "undefined") {
+        await createDataSubjectConsentModel(parseInt(responseData.rows[0].data_subject_id), { consent_type: consentType, is_consent_active: isConsentActive });
+        res.status(201);
+      } else {
+        res.status(422).send({ error: "consent_type or is_consent_active are undefined." });
+      }
+    }
   } catch(err) {
-    res.status(500).send(`[ERROR] Cannot create Subject Data`);
+    res.status(500).send({ error: "Cannot create data subject." });
     console.error(err);
   }
 };

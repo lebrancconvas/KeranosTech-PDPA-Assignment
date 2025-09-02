@@ -1,4 +1,4 @@
-import type { IDataSubject } from "../@types/data-subject.interface.js";
+import type { IDataSubject, IConsent } from "../@types/data-subject.interface.js";
 import pool from "../db/db.js";
 
 // - (POST) `/data_subjects`
@@ -14,7 +14,20 @@ export const createDataSubjectModel = async (dataSubject: IDataSubject) => {
   const values = [national_id, name, email, phone];
   
   const result = await pool.query(query, values);
-  return result.rows[0];
+  return result;
+};
+
+export const createDataSubjectConsentModel = async (fkDataSubjectID: number, consent: IConsent) => {
+  const { consent_type, is_consent_active } = consent;
+  
+  const query = `
+    INSERT INTO consent_records(fk_data_subject_id, consent_type, is_consent_active)
+    VALUES ($1, $2, $3);
+  `;
+
+  const values = [fkDataSubjectID, consent_type, is_consent_active];
+  const result = await pool.query(query, values);
+  return result;
 };
 
 // - (GET) `/data_subjects`
@@ -48,8 +61,15 @@ export const updateDataSubjectByIdModel = () => {
 };
 
 // - (GET) `/data_subjects/<data_subject_id>/consents`
-export const readDataSubjectConsentByIdModel = () => {
+export const readDataSubjectConsentByIdModel = async (dataSubjectID: number) => {
+  const query = `
+  
+  `;
 
+  const value = [dataSubjectID];
+
+  const result = await pool.query(query, value);
+  return result.rows;
 };
 
 // - (PUT) `/data_subjects/<data_subject_id>/consents`
