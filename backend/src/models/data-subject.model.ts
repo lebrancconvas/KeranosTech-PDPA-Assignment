@@ -61,7 +61,7 @@ export const updateDataSubjectByIdModel = async (data_subject_id: number, dataSu
 
   const query = `
     UPDATE data_subjects
-    SET name = $2, email = $3, phone = $4, is_restricted = $5
+    SET name = $2, email = $3, phone = $4, is_restricted = $5, updated_at = CURRENT_TIMESTAMP
     WHERE data_subject_id = $1;
   `;
 
@@ -91,7 +91,7 @@ export const updateDataSubjectConsentActiveByIdModel = async (fkDataSubjectID: n
   
   const query = `
     UPDATE consent_records
-    SET is_consent_active = $3
+    SET is_consent_active = $3, updated_at = CURRENT_TIMESTAMP
     WHERE fk_data_subject_id = $1 AND consent_type = $2;
   `;
 
