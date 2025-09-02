@@ -1,11 +1,17 @@
 import type { Request, Response } from "express";
-import type { IConsent, IDataSubject, IDataSubjectWithConsent } from "../@types/data-subject.interface.js";
+import type { 
+  IConsent, 
+  IDataSubject, 
+  IDataSubjectWithConsent,
+  IDataSubjectForUpdate
+} from "../@types/data-subject.interface.js";
 import { 
   createDataSubjectModel,
   createDataSubjectConsentModel,
   readDataSubjectModel,
   readDataSubjectByIdModel,
-  readDataSubjectConsentByIdModel
+  readDataSubjectConsentByIdModel,
+  updateDataSubjectByIdModel
 } from "../models/data-subject.model.js";
 
 // - (POST) `/data_subjects`
@@ -62,8 +68,21 @@ export const readDataSubjectByIdController = async (req: Request, res: Response)
 };
 
 // - (PUT) `/data_subjects/<data_subject_id>`
-export const updateDataSubjectByIdController = (req: Request, res: Response) => {
-  
+export const updateDataSubjectByIdController = async (req: Request, res: Response) => {
+  try {
+    const dataSubjectID = req.params.data_subject_id;
+    if(dataSubjectID) {
+      const dataSubjectIDInt = parseInt(dataSubjectID);
+      const { name, email, phone, is_restricted }: IDataSubjectForUpdate = req.body;
+      await updateDataSubjectByIdModel(dataSubjectIDInt, { name, email, phone, is_restricted });
+      res.status(200).send({ data: `Data Subject Update Success at data_subject_id: ${dataSubjectIDInt}.` });
+    } else {
+      res.status(422).send({ error: `Data Subject ID is undefined.` });
+    }
+  } catch(err) {
+    res.status(500).send({ error: `Cannot update the data subject.` });
+    console.error(err);
+  }
 };
 
 // - (GET) `/data_subjects/<data_subject_id>/consents`

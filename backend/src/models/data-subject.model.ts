@@ -1,4 +1,4 @@
-import type { IDataSubject, IConsent } from "../@types/data-subject.interface.js";
+import type { IDataSubject, IConsent, IDataSubjectForUpdate } from "../@types/data-subject.interface.js";
 import pool from "../db/db.js";
 
 // - (POST) `/data_subjects`
@@ -56,8 +56,18 @@ export const readDataSubjectByIdModel = async (dataSubjectID: number) => {
 };
 
 // - (PUT) `/data_subjects/<data_subject_id>`
-export const updateDataSubjectByIdModel = () => {
-  
+export const updateDataSubjectByIdModel = async (data_subject_id: number, dataSubjectForUpdate: IDataSubjectForUpdate) => {
+  const { name, email, phone, is_restricted } = dataSubjectForUpdate;
+
+  const query = `
+    UPDATE data_subjects
+    SET name = $2, email = $3, phone = $4, is_restricted = $5
+    WHERE data_subject_id = $1;
+  `;
+
+  const values = [data_subject_id, name, email, phone, is_restricted];
+
+  await pool.query(query, values);
 };
 
 // - (GET) `/data_subjects/<data_subject_id>/consents`

@@ -22,3 +22,10 @@ export interface IDataSubject {
 export interface IDataSubjectWithConsent extends IDataSubject {
   consents: IConsent[];
 };
+
+export interface IDataSubjectForUpdate {
+  name: string;
+  email: string;
+  phone: string;
+  is_restricted: boolean;
+};
