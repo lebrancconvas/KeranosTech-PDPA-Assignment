@@ -1,3 +1,5 @@
+import type { Request, Response } from "express";
+
 // - (POST) `/data_subjects`
 export const createDataSubjectModel = (req: Request, res: Response) => {
   

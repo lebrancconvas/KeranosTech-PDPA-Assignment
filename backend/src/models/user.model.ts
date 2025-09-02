@@ -1,3 +1,5 @@
+import type { Request, Response } from "express";
+
 // - **Authentication**
 
 //   - (POST) `/auth/register`
