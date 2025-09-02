@@ -29,8 +29,17 @@ export const readDataSubjectModel = async () => {
 };
 
 // - (GET) `/data_subjects/<data_subject_id>`
-export const readDataSubjectByIdModel = () => {
+export const readDataSubjectByIdModel = async (dataSubjectID: number) => {
+  const query = `
+    SELECT national_id, name, email, phone, is_restricted, created_at, updated_at
+    FROM data_subjects
+    WHERE data_subject_id = $1
+  `;
 
+  const value = [dataSubjectID];
+
+  const result = await pool.query(query, value);
+  return result.rows;
 };
 
 // - (PUT) `/data_subjects/<data_subject_id>`
