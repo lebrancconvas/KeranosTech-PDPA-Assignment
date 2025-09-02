@@ -1,15 +1,13 @@
-import type { Request, Response } from "express";
-
 // - **Authentication**
 
 //   - (POST) `/auth/register`
-export const registerNewUserModel = (req: Request, res: Response) => {
+export const registerNewUserModel = () => {
 
 };
 
 
 //   - (POST) `/auth/login`
-export const loginUserModel = (req: Request, res: Response) => {
+export const loginUserModel = () => {
 
 };
 
@@ -18,12 +16,12 @@ export const loginUserModel = (req: Request, res: Response) => {
 // - **Users**
 
 //   - (GET) `/users`
-export const readUsersModel = (req: Request, res: Response) => {
+export const readUsersModel = () => {
 
 };
 
 //   - (GET) `/me`
-export const readLoginUserModel = (req: Request, res: Response) => {
+export const readLoginUserModel = () => {
   
 };
 

@@ -1,11 +1,10 @@
-import type { Request, Response } from "express";
 
 // - (POST) `/audit_logs`
-export const createAuditLogModel = (req: Request, res: Response) => {
+export const createAuditLogModel = () => {
 
 };
 
 // - (GET) `/audit_logs`
-export const readAuditLogsModel = (req: Request, res: Response) => {
+export const readAuditLogsModel = () => {
   
 };

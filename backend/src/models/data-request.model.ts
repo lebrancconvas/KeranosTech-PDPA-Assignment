@@ -1,21 +1,20 @@
-import type { Request, Response } from "express";
 
 // - (POST) `/data_requests`
-export const createDataRequestModel = (req: Request, res: Response) => {
+export const createDataRequestModel = () => {
   
 };
 
 // - (GET) `/data_requests`
-export const readDataRequestModel = (req: Request, res: Response) => {
+export const readDataRequestModel = () => {
 
 };
 
 // - (GET) `/data_requests/<request_id>`
-export const readDataRequestByIdModel = (req: Request, res: Response) => {
+export const readDataRequestByIdModel = () => {
 
 };
 
 // - (PUT) `/data_requests/<request_id>/status`
-export const updateDataRequestStatusByIdModel = (req: Request, res: Response) => {
+export const updateDataRequestStatusByIdModel = () => {
 
 };
