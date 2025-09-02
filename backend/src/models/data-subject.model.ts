@@ -18,8 +18,14 @@ export const createDataSubjectModel = async (dataSubject: IDataSubject) => {
 };
 
 // - (GET) `/data_subjects`
-export const readDataSubjectModel = () => {
+export const readDataSubjectModel = async () => {
+  const query = `
+    SELECT national_id, name, email, phone, is_restricted, created_at, updated_at
+    FROM data_subjects
+  `;
 
+  const result = await pool.query(query);
+  return result.rows;
 };
 
 // - (GET) `/data_subjects/<data_subject_id>`

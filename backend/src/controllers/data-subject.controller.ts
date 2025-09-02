@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import type { IDataSubject } from "../@types/data-subject.interface.js";
 import { 
-  createDataSubjectModel
+  createDataSubjectModel,
+  readDataSubjectModel
 } from "../models/data-subject.model.js";
 
 // - (POST) `/data_subjects`
@@ -17,8 +18,14 @@ export const createDataSubjectController = async (req: Request, res: Response) =
 };
 
 // - (GET) `/data_subjects`
-export const readDataSubjectController = (req: Request, res: Response) => {
-
+export const readDataSubjectController = async (req: Request, res: Response) => {
+  try {
+    const data = await readDataSubjectModel();
+    res.status(200).send(data);
+  } catch(err) {
+    res.status(500).send(`[ERROR] Cannot read Subject Data`);
+    console.error(err);
+  }
 };
 
 // - (GET) `/data_subjects/<data_subject_id>`
