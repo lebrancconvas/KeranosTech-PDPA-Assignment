@@ -211,6 +211,8 @@ ref: data_subjects.data_subject_id < data_requests.fk_data_subject_id
 
 - 
 
+## Known Limitations & Future Improvements
+
 ## Assumptions
 
 You can view my assumptions on this project via this file: -> [ASSUMPTIONS.md](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/blob/master/docs/ASSUMPTIONS.md)
