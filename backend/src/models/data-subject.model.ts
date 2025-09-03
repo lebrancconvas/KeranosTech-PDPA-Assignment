@@ -96,7 +96,7 @@ export const updateDataSubjectConsentActiveByIdModel = async (fkDataSubjectID: n
 
 export const deleteDataSubjectByIdModel = async (dataSubjectID: number) => {
   const query = `
-    DELETE FROM data_subjects
+    DELETE FROM data_subjects 
     WHERE data_subject_id = $1;
   `;
 

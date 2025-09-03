@@ -6,7 +6,7 @@ import {
   readDataSubjectConsentByIdController,
   updateDataSubjectByIdController,
   updateDataSubjectConsentActiveByIdController,
-  deleteDataSubjectByIdController
+  deleteDataSubjectWithConsentsByIdController
 } from "../controllers/data-subject.controller.js";
 import { request } from "http";
 
@@ -37,7 +37,7 @@ router.put("/data_subjects/:data_subject_id/consents", (req: Request, res: Respo
   updateDataSubjectConsentActiveByIdController(req, res);
 });
 router.delete("/data_subjects/:data_subject_id", (req: Request, res: Response) => {
-  deleteDataSubjectByIdController(req, res);
+  deleteDataSubjectWithConsentsByIdController(req, res);
 });
 
 export default router; 

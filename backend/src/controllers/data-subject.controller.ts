@@ -123,17 +123,16 @@ export const updateDataSubjectConsentActiveByIdController = async (req: Request,
   }
 };
 
-export const deleteDataSubjectByIdController = async (req: Request, res: Response) => {
+export const deleteDataSubjectWithConsentsByIdController = async (req: Request, res: Response) => {
   try {
     const dataSubjectID = req.params.data_subject_id;
     if(dataSubjectID) {
       const dataSubjectIDInt = parseInt(dataSubjectID);
 
       await deleteConsentsByDataSubjectIdModel(dataSubjectIDInt);
-      res.status(200).send({ data: `Delete Consents success for data_subject_id: ${dataSubjectIDInt}.` });
+      res.status(200).send({ data: `Delete Data Subject consents success at data_subject_id: ${dataSubjectIDInt}.` });
 
       await deleteDataSubjectByIdModel(dataSubjectIDInt);
-      res.status(200).send({ data: `Delete Data Subject success at data_subject_id: ${dataSubjectIDInt}.` });
     } else {
       res.status(422).send({ error: `Data Subject ID is undefined.` });
     }
