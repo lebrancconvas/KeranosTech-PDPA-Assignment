@@ -1,2 +1,0 @@
-[build]
-environment = { VITE_API_BASE_URL = https://keranostech-assignment-pdpa.onrender.com/api }
