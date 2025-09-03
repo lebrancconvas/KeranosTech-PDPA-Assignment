@@ -11,6 +11,7 @@ Assignment Project for "Full-Stack Developer (Junior)" at "Keranos Tech Co., Ltd
 ## URL (Development)
 
 - Front-End URL: [https://keranos-pdpa.netlify.app/](https://keranos-pdpa.netlify.app/)
+  - Data Subject Feature URL: [https://keranos-pdpa.netlify.app/data-subject](https://keranos-pdpa.netlify.app/data-subject)
 - Back-End (API) URL: [https://keranostech-assignment-pdpa.onrender.com/api](https://keranostech-assignment-pdpa.onrender.com/api)
 
 ## Project Setup (for Local Development)
