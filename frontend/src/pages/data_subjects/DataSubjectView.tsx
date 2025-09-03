@@ -60,7 +60,9 @@ function DataSubjectView() {
               <td>{dataSubject.phone}</td>
               <td>{dataSubject.national_id}</td>
               <td>
-                <button>View Consent</button>
+                <Link to={`/data-subject/${dataSubject.data_subject_id}/consent`}>
+                  <button>Manage Consent</button>
+                </Link>
                 <Link to={`/data-subject/edit/${dataSubject.data_subject_id}`}>
                   <button>Edit</button>
                 </Link>
