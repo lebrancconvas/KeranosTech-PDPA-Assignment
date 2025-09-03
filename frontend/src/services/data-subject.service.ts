@@ -40,7 +40,7 @@ export const updateDataSubjectById = async(dataSubjectID: number, dataSubjectFor
 export const readDataSubjectConsentsById = async(dataSubjectID: number) => {
   const response = await api.get(`/data_subjects/${dataSubjectID}/consents`);
   if(response.data.data) {
-    return response.data.data[0];
+    return response.data.data;
   } else {
     return response.data.error;
   }
