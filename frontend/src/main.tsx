@@ -5,6 +5,8 @@ import './index.css'
 
 // Import Page Components.
 import App from './App.tsx'
+import DataSubjectView from './pages/data_subjects/DataSubjectView.tsx';
+import DataSubjectEditor from './pages/data_subjects/DataSubjectEditor.tsx';
 import NotFound from './pages/errors/NotFound.tsx';
 
 const router = createBrowserRouter([
@@ -12,9 +14,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <NotFound />,
-    children: [
-
-    ]
+  },
+  {
+    path: "/data-subject",
+    element: <DataSubjectView />,
+  },
+  {
+    path: "/data-subject/edit",
+    element: <DataSubjectEditor />
   }
 ]);
 
