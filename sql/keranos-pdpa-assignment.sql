@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS data_subjects (
 );
 
 CREATE TABLE IF NOT EXISTS consent_records (
-  "consents_record_id" serial4 UNIQUE PRIMARY KEY NOT NULL,
+  "consent_record_id" serial4 UNIQUE PRIMARY KEY NOT NULL,
   "fk_data_subject_id" int4,
   "consent_type" consent_type_enum,
   "is_consent_active" bool DEFAULT false,
