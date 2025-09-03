@@ -97,10 +97,10 @@ function DataSubjectEditor() {
         <h1>Data Subject Form</h1>
       </header>
       <form onSubmit={handleSubmit}>
-        <div><label>National ID</label><input type="text" name="national_id" value={formData.national_id} onChange={handleChange} disabled={Boolean(data_subject_id)} required />{errors.national_id && <p style={{ color: 'red', margin: '4px 0 0' }}>{errors.national_id}</p>}</div>
+        <div><label>National ID</label><input type="number" name="national_id" value={formData.national_id} onChange={handleChange} maxLength={13} disabled={Boolean(data_subject_id)} required />{errors.national_id && <p style={{ color: 'red', margin: '4px 0 0' }}>{errors.national_id}</p>}</div>
         <div><label>Name</label><input type="text" name="name" value={formData.name} onChange={handleChange} required /></div>
         <div><label>Email</label><input type="email" name="email" value={formData.email} onChange={handleChange} required />{errors.email && <p style={{ color: 'red', margin: '4px 0 0' }}>{errors.email}</p>}</div>
-        <div><label>Phone</label><input type="text" name="phone" value={formData.phone} onChange={handleChange} required />{errors.phone && <p style={{ color: 'red', margin: '4px 0 0' }}>{errors.phone}</p>}</div>
+        <div><label>Phone</label><input type="number" name="phone" value={formData.phone} onChange={handleChange} maxLength={10} required />{errors.phone && <p style={{ color: 'red', margin: '4px 0 0' }}>{errors.phone}</p>}</div>
         
         {data_subject_id && (
             <div><label><input type="checkbox" name="is_restricted" checked={formData.is_restricted} onChange={handleChange} /> Restrict Processing</label></div>
