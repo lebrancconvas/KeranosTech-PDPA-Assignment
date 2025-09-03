@@ -221,6 +221,12 @@ ref: data_subjects.data_subject_id < data_requests.fk_data_subject_id
 
 ## Known Limitations & Future Improvements
 
+### Improvement
+
+- Finish other requirements (Data Requests, Dashboard, Report, Audit Logs, and Auth)
+- User Interface Improvement (Responsive Design, Night Mode Toggle, Language support)
+- Security concerned (Two Factor Authentication, Data Encryption, SQL Injection prevention)
+
 ## Assumptions
 
 You can view my assumptions on this project via this file: -> [ASSUMPTIONS.md](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/blob/master/docs/ASSUMPTIONS.md)
