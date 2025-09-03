@@ -56,7 +56,7 @@ export const updateDataSubjectConsentActiveById = async(dataSubjectID: number, c
   }
 };
 
-export const deleteDataSubjectConsentById = async(dataSubjectID: number) => {
+export const deleteDataSubjectById = async(dataSubjectID: number) => {
   const response = await api.delete(`/data_subjects/${dataSubjectID}`);
   if(response.data.data) {
     return response.data.data;
