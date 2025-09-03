@@ -33,6 +33,7 @@ export const readDataSubjectModel = async () => {
   const query = `
     SELECT data_subject_id, national_id, name, email, phone, is_restricted, created_at, updated_at
     FROM data_subjects
+    ORDER BY data_subject_id ASC;
   `;
 
   const result = await pool.query(query);
@@ -44,6 +45,7 @@ export const readDataSubjectByIdModel = async (dataSubjectID: number) => {
     SELECT data_subject_id, national_id, name, email, phone, is_restricted, created_at, updated_at
     FROM data_subjects
     WHERE data_subject_id = $1
+    ORDER BY data_subject_id ASC;
   `;
 
   const value = [dataSubjectID];
@@ -68,10 +70,11 @@ export const updateDataSubjectByIdModel = async (data_subject_id: number, dataSu
 
 export const readDataSubjectConsentByIdModel = async (dataSubjectID: number) => {
   const query = `
-    SELECT data_subject_id, national_id, name, email, phone, is_restricted, consent_record_id, consent_type, is_consent_active
+    SELECT data_subjects.data_subject_id, data_subjects.national_id, data_subjects.name, data_subjects.email, data_subjects.phone, data_subjects.is_restricted, consent_records.consent_record_id, consent_records.consent_type, consent_records.is_consent_active
     FROM data_subjects
     LEFT JOIN consent_records ON data_subjects.data_subject_id = consent_records.fk_data_subject_id
-    WHERE consent_records.fk_data_subject_id = $1;  
+    WHERE consent_records.fk_data_subject_id = $1
+    ORDER BY consent_records.consent_type ASC; 
   `;
 
   const value = [dataSubjectID];
