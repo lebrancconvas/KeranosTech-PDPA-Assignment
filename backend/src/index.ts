@@ -3,6 +3,7 @@ import router from "./router/router.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import morgan from "morgan";
+import cors from "cors";
 
 import { DB } from "./db/db.js";
 
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 8000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+app.use(cors());
 
 app.use("/api", router);
 
