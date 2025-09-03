@@ -189,6 +189,8 @@ ref: data_subjects.data_subject_id < data_requests.fk_data_subject_id
 
 ## API Documentation
 
+You can view Postman API Collections from here -> [PDPA_System_KeranosTech_Assignment.postman_collection.json](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/blob/master/docs/api/PDPA_System_KeranosTech_Assignment.postman_collection.json)
+
 ### Users & User Authentication Routes
 
 - **Authentication**
