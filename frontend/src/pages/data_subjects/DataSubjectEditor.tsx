@@ -67,7 +67,9 @@ function DataSubjectEditor() {
 
   return (
     <div>
-      <h1>{data_subject_id ? 'Edit' : 'Create'} Data Subject</h1>
+      <header>
+        <h1>Data Subject Form</h1>
+      </header>
       <form onSubmit={handleSubmit}>
         <div><label>National ID</label><input type="text" name="national_id" value={formData.national_id} onChange={handleChange} disabled={Boolean(data_subject_id)} required /></div>
         <div><label>Name</label><input type="text" name="name" value={formData.name} onChange={handleChange} required /></div>

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { readDataSubjects, deleteDataSubjectById } from "../../services/data-subject.service";
 import type { IDataSubject } from "../../@types/data-subject.interface";
 
+import "../../styles/data_subjects/dataSubjectView.css";
+
 function DataSubjectView() {
   const [dataSubjects, setDataSubjects] = useState<IDataSubject[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -39,7 +41,9 @@ function DataSubjectView() {
 
   return (
     <div>
-      <h1>Data Subject Management</h1>
+      <header>
+        <h1>Data Subject Management</h1>
+      </header>
       <Link to="/data-subject/new">
         <button>New Data Subject</button>
       </Link>
