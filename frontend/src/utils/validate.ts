@@ -17,6 +17,13 @@ export const validateNationalID = (nationalID: string): boolean => {
   return checkDigit === lastDigit;
 };
 
+export const validateEmail = (email: string): boolean => {
+  if(!email) return false;
+  
+  const emailPattern = /@email.com$/g;
+  return emailPattern.test(email);
+};
+
 export const validatePhoneNumber = (phone: string): boolean => {
   if(!phone) return false;
   if(phone.length !== 10) return false;

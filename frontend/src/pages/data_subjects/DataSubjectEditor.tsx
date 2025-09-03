@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createDataSubject, readDataSubjectById, updateDataSubjectById } from '../../services/data-subject.service.js';
 import { getConsentDisplayName } from '../../utils/consentHelper.js';
-import { validateNationalID, validatePhoneNumber } from '../../utils/validate.js';
+import { validateEmail, validateNationalID, validatePhoneNumber } from '../../utils/validate.js';
 import type { ConsentType } from '../../@types/data-subject.interface.js';
 
 const consentTypes: ConsentType[] = ["MARKETING", "SERVICE", "LEGAL", "CONTRACT", "ANALYTICS"];
@@ -63,6 +63,10 @@ function DataSubjectEditor() {
       validationErrors.national_id = "National ID must have 13 digits and passes the check sum.";
     }
 
+    if(!validateEmail(formData.email)) {
+      validationErrors.email = "E-Mail must end with '@email.com'.";
+    }
+
     if(!validatePhoneNumber(formData.phone)) {
       validationErrors.phone = "Phone Number must have 10 digits and begins with '08' or '09'";
     }
@@ -95,7 +99,7 @@ function DataSubjectEditor() {
       <form onSubmit={handleSubmit}>
         <div><label>National ID</label><input type="text" name="national_id" value={formData.national_id} onChange={handleChange} disabled={Boolean(data_subject_id)} required />{errors.national_id && <p style={{ color: 'red', margin: '4px 0 0' }}>{errors.national_id}</p>}</div>
         <div><label>Name</label><input type="text" name="name" value={formData.name} onChange={handleChange} required /></div>
-        <div><label>Email</label><input type="email" name="email" value={formData.email} onChange={handleChange} required /></div>
+        <div><label>Email</label><input type="email" name="email" value={formData.email} onChange={handleChange} required />{errors.email && <p style={{ color: 'red', margin: '4px 0 0' }}>{errors.email}</p>}</div>
         <div><label>Phone</label><input type="text" name="phone" value={formData.phone} onChange={handleChange} required />{errors.phone && <p style={{ color: 'red', margin: '4px 0 0' }}>{errors.phone}</p>}</div>
         
         {data_subject_id && (
