@@ -93,3 +93,25 @@ export const updateDataSubjectConsentActiveByIdModel = async (fkDataSubjectID: n
 
   await pool.query(query, values);
 };
+
+export const deleteDataSubjectByIdModel = async (dataSubjectID: number) => {
+  const query = `
+    DELETE FROM data_subjects
+    WHERE data_subject_id = $1;
+  `;
+
+  const values = [dataSubjectID];
+
+  await pool.query(query, values);
+};
+
+export const deleteConsentsByDataSubjectIdModel = async (fkDataSubjectID: number) => {
+  const query = `
+    DELETE FROM consent_records
+    WHERE fk_data_subject_id = $1;
+  `;
+
+  const values = [fkDataSubjectID];
+
+  await pool.query(query, values);
+};

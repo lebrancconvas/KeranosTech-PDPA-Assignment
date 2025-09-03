@@ -12,7 +12,9 @@ import {
   readDataSubjectByIdModel,
   readDataSubjectConsentByIdModel,
   updateDataSubjectByIdModel,
-  updateDataSubjectConsentActiveByIdModel
+  updateDataSubjectConsentActiveByIdModel,
+  deleteDataSubjectByIdModel,
+  deleteConsentsByDataSubjectIdModel
 } from "../models/data-subject.model.js";
 
 // - (POST) `/data_subjects`
@@ -117,6 +119,26 @@ export const updateDataSubjectConsentActiveByIdController = async (req: Request,
     }
   } catch(err) {
     res.status(500).send({ error: `Cannot update data subject's consent data.` });
+    console.error(err);
+  }
+};
+
+export const deleteDataSubjectByIdController = async (req: Request, res: Response) => {
+  try {
+    const dataSubjectID = req.params.data_subject_id;
+    if(dataSubjectID) {
+      const dataSubjectIDInt = parseInt(dataSubjectID);
+
+      await deleteConsentsByDataSubjectIdModel(dataSubjectIDInt);
+      res.status(200).send({ data: `Delete Consents success for data_subject_id: ${dataSubjectIDInt}.` });
+
+      await deleteDataSubjectByIdModel(dataSubjectIDInt);
+      res.status(200).send({ data: `Delete Data Subject success at data_subject_id: ${dataSubjectIDInt}.` });
+    } else {
+      res.status(422).send({ error: `Data Subject ID is undefined.` });
+    }
+  } catch(err) {
+    res.status(500).send({ error: `Cannot delete data subject.` });
     console.error(err);
   }
 };
