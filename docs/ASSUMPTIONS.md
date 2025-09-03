@@ -1,135 +1,57 @@
 # Keranos PDPA Assignment's Assumption
 
-## User Role
+## Overview
 
-- "User": View the system.
-  - Assigned by "Admin" (by default).
-  - Login as a "User"
+- The PDPA Management System was created from the company to manage the privacy for their customers's data as **"Data Subjects"**, and each customer's data have their consent activations for letting the company to use their data for the purpose as they agree (active) on the consent as **Consent Records**.
+- Customer can request to the company for managing their data based on PDPA rights, then the Admin or Data Protection Officer (DPO) of the system will manage the request as **"Data Requests"**.
+- All activity doing in the system can be logged as **"Audit Logs"**.
+
+## Workflow
+
+### Admin
+
+- **Auth**
+  - Manage User data (CREATE, READ, UPDATE, DELETE).
+  - Assign User's Role ("Admin", "DPO", "User") for each user.
+  - Login as an Admin.
   - Logout
-  - View the data (Dashboard Data & Data Subject Data)
-- "Data Protection Officer (DPO)": manage the requests and reports.
-  - Assigned by "Admin".
-  - Login as a "DPO".
-  - Logout
-  - Do the "User" Jobs
-    - View the data (Dashboard Data & Data Subject Data)
-  - Additional Jobs
-    - Create Request.
-    - Manage Request Status.
-    - Generated Report.
-- "Admin" manage the whole system.
-  - User Registration for all users (other users don't need to register by themselves).
-  - Login as an "Admin"
-  - Logout
-  - Do the User jobs
-    - View the data (Dashboard & Data Subject Data)
-  - Do the DPO jobs
-    - Create Request.
-    - Update Request Status.
-    - Generate the report.
-  - Additional jobs
-    - Manage Consent for each data subjects.
+- **Data Subject**
+  - Manage Data Subject (Customer) data (CREATE, READ, UPDATE, DELETE) based on Data Request.
+  - Update consent activation for each data subject.
+- **Data Request**
+  - Manage Data Request (from Customer) data (CREATE, READ, UPDATE, DELETE)
+  - Update request status (along with "DPO")
+- **Dashboard**
+  - View the dashboard data.
+- **Audit Logs & Report**
+  - Generate the report (along with "DPO")
+  - View Audit Logs.
   
-## Test Plan
+### DPO (Data Protection Officer)
 
-### Test Data
+- **Auth**
+  - Login as a DPO.
+  - Logout
+- **Data Subject**
+  - View Data Subject data.
+- **Data Request**
+  - Manage Data Request (from Customer) data (CREATE, READ, UPDATE, DELETE)
+  - Update request status (along with "Admin")
+- **Dashboard**
+  - View the dashboard data.
+- **Audit Logs & Report** 
+  - Generate the report (along with "Admin")
+  - View Audit Logs.
 
-- **users**
-  - user_id: 1
-    - email: "admin@pdpa.com"
-    - password: "Admin123!"
-    - user_role: "ADMIN"
-
-- **data_subjects**
-  - data_subject_id: 1
-    - national_id: "1234567890123"
-    - name: "สมชาย ใจดี"
-    - email: "somchai@email.com"
-    - phone: "0812345678"
-    - is_restricted: false
-  - data_subject_id: 2
-    - national_id: "9876543210987"
-    - name: "สมหญิง รักงาน"
-    - email: "somying@email.com"
-    - phone: "0823456789"
-    - is_restricted: false
-  - data_subject_id: 3
-    - national_id: "1111111111118"
-    - name: "มานี มีสุข"
-    - email: "manee@email.com"
-    - phone: "0834567890"
-    - is_restricted: false
-
-- **consent_records**
-  - consent_record_id: 1
-    - fk_data_subject_id: 1
-    - consent_type: "MARKETING"
-    - is_consent_active: true
-  - consent_record_id: 2
-    - fk_data_subject_id: 1
-    - consent_type: "SERVICE"
-    - is_consent_active: true
-  - consent_record_id: 3
-    - fk_data_subject_id: 1
-    - consent_type: "LEGAL"
-    - is_consent_active: true
-  - consent_record_id: 4
-    - fk_data_subject_id: 1
-    - consent_type: "CONTRACT"
-    - is_consent_active: true
-  - consent_record_id: 5
-    - fk_data_subject_id: 1
-    - consent_type: "ANALYTICS"
-    - is_consent_active: true
-  - consent_record_id: 6
-    - fk_data_subject_id: 2
-    - consent_type: "MARKETING"
-    - is_consent_active: false
-  - consent_record_id: 7
-    - fk_data_subject_id: 2
-    - consent_type: "SERVICE"
-    - is_consent_active: false
-  - consent_record_id: 8
-    - fk_data_subject_id: 2
-    - consent_type: "LEGAL"
-    - is_consent_active: false
-  - consent_record_id: 9
-    - fk_data_subject_id: 2
-    - consent_type: "CONTRACT"
-    - is_consent_active: false
-  - consent_record_id: 10
-    - fk_data_subject_id: 2
-    - consent_type: "ANALYTICS"
-    - is_consent_active: false
-  - consent_record_id: 11
-    - fk_data_subject_id: 3
-    - consent_type: "MARKETING"
-    - is_consent_active: true
-  - consent_record_id: 12
-    - fk_data_subject_id: 3
-    - consent_type: "SERVICE"
-    - is_consent_active: true
-  - consent_record_id: 13
-    - fk_data_subject_id: 3
-    - consent_type: "LEGAL"
-    - is_consent_active: true
-  - consent_record_id: 14
-    - fk_data_subject_id: 3
-    - consent_type: "CONTRACT"
-    - is_consent_active: false
-  - consent_record_id: 15
-    - fk_data_subject_id: 3
-    - consent_type: "ANALYTICS"
-    - is_consent_active: false
-
-- **data_requests**
-  - data_request_id: 1
-    - fk_data_subject_id: 3
-    - request_type: "WITHDRAW"
-    - request_pending: "PENDING"
-    - details: "Withdraw Consent for Marketing Communications Consent."
-  - data_request_id: 2
-    - fk_data_subject_id: 2
-    - request_type: "ACCESS"
-    - request_pending: "PENDING"
-    - details: "Request for accessing the personal data."
+### User (Normal User)
+- **Auth**
+  - Login as a User.
+  - Logout
+- **Data Subject**
+  - View Data Subject data.
+- **Data Request**
+  - View Data Request data.
+- **Dashboard**
+  - View Dashboard.
+- **Audit Logs & Report**
+  - View Audit Logs.
