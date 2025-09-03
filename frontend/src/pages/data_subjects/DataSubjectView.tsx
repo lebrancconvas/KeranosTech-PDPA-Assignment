@@ -13,7 +13,6 @@ function DataSubjectView() {
     try {
       setLoading(true);
       const data = await readDataSubjects();
-      console.log("Data: ", data);
       setDataSubjects(data);
     } catch(err) {
       console.error(`[ERROR] Failed to fetch the subject data.`, err);
