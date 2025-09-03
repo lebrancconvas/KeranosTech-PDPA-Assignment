@@ -1,14 +1,16 @@
 import express, { type Router, type Request, type Response } from "express";
 import {
   createDataSubjectController,
+
   readDataSubjectController,
   readDataSubjectByIdController,
   readDataSubjectConsentByIdController,
+
   updateDataSubjectByIdController,
   updateDataSubjectConsentActiveByIdController,
+  
   deleteDataSubjectWithConsentsByIdController
 } from "../controllers/data-subject.controller.js";
-import { request } from "http";
 
 const router: Router = express.Router();
 
@@ -39,5 +41,28 @@ router.put("/data_subjects/:data_subject_id/consents", (req: Request, res: Respo
 router.delete("/data_subjects/:data_subject_id", (req: Request, res: Response) => {
   deleteDataSubjectWithConsentsByIdController(req, res);
 });
+
+// [WIP Route]
+// Data Request
+// router.post("/data_requests", (req: Request, res: Response) => {
+
+// });
+// router.get("/data_requests", (req: Request, res: Response) => {
+
+// });
+// router.get("/data_requests/:data_request:id", (req: Request, res: Response) => {
+
+// });
+// router.put("/data_requests/:data_request_id/status", (req: Request, res: Response) => {
+
+// });
+
+// Audit Logs Route
+// router.post("/audit_logs", (req: Request, res: Response) => {
+
+// });
+// router.get("/audit_logs", (req: Request, res: Response) => {
+
+// });
 
 export default router; 
