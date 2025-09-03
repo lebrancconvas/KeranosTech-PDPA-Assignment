@@ -3,13 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { createDataSubject, readDataSubjectById, updateDataSubjectById } from '../../services/data-subject.service.js';
 import type { ConsentType } from '../../@types/data-subject.interface.js';
 
-// ค่า Consent เริ่มต้นทั้งหมด
-const allConsentTypes: ConsentType[] = ["MARKETING", "SERVICE", "LEGAL", "CONTRACT", "ANALYTICS"];
+const consentTypes: ConsentType[] = ["MARKETING", "SERVICE", "LEGAL", "CONTRACT", "ANALYTICS"];
 
-const DataSubjectEditor: React.FC = () => {
-  const { id } = useParams<{ id?: string }>();
+function DataSubjectEditor() {
+  const { data_subject_id } = useParams<{ data_subject_id?: string }>();
   const navigate = useNavigate();
-  const isEditMode = Boolean(id);
 
   const [formData, setFormData] = useState({
     national_id: '',
@@ -17,14 +15,14 @@ const DataSubjectEditor: React.FC = () => {
     email: '',
     phone: '',
     is_restricted: false,
-    consents: allConsentTypes.map(type => ({ consent_type: type, is_consent_active: false }))
+    consents: consentTypes.map((type: ConsentType) => ({ consent_type: type, is_consent_active: false }))
   });
 
   useEffect(() => {
-    if (isEditMode && id) {
+    if (data_subject_id) {
       const fetchSubject = async () => {
         try {
-          const data = await readDataSubjectById(parseInt(id));
+          const data = await readDataSubjectById(parseInt(data_subject_id));
           setFormData({ ...formData, ...data });
         } catch (error) {
           console.error("Failed to fetch subject data:", error);
@@ -32,7 +30,7 @@ const DataSubjectEditor: React.FC = () => {
       };
       fetchSubject();
     }
-  }, [id, isEditMode]);
+  }, [data_subject_id]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -54,9 +52,9 @@ const DataSubjectEditor: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      if (isEditMode && id) {
+      if (data_subject_id) {
         const { name, email, phone, is_restricted } = formData;
-        await updateDataSubjectById(parseInt(id), { name, email, phone, is_restricted });
+        await updateDataSubjectById(parseInt(data_subject_id), { name, email, phone, is_restricted });
       } else {
         await createDataSubject(formData);
       }
@@ -68,18 +66,18 @@ const DataSubjectEditor: React.FC = () => {
 
   return (
     <div>
-      <h1>{isEditMode ? 'Edit' : 'Create'} Data Subject</h1>
+      <h1>{data_subject_id ? 'Edit' : 'Create'} Data Subject</h1>
       <form onSubmit={handleSubmit}>
-        <div><label>National ID</label><input type="text" name="national_id" value={formData.national_id} onChange={handleChange} disabled={isEditMode} required /></div>
+        <div><label>National ID</label><input type="text" name="national_id" value={formData.national_id} onChange={handleChange} disabled={Boolean(data_subject_id)} required /></div>
         <div><label>Name</label><input type="text" name="name" value={formData.name} onChange={handleChange} required /></div>
         <div><label>Email</label><input type="email" name="email" value={formData.email} onChange={handleChange} required /></div>
         <div><label>Phone</label><input type="text" name="phone" value={formData.phone} onChange={handleChange} required /></div>
         
-        {isEditMode && (
+        {data_subject_id && (
             <div><label><input type="checkbox" name="is_restricted" checked={formData.is_restricted} onChange={handleChange} /> Restrict Processing</label></div>
         )}
 
-        {!isEditMode && (
+        {!data_subject_id && (
             <fieldset>
                 <legend>Consents</legend>
                 {formData.consents.map(consent => (
@@ -97,7 +95,7 @@ const DataSubjectEditor: React.FC = () => {
             </fieldset>
         )}
         
-        <button type="submit">{isEditMode ? 'Update' : 'Create'}</button>
+        <button type="submit">{data_subject_id ? 'Update' : 'Create'}</button>
         <button type="button" onClick={() => navigate('/data-subject')}>Cancel</button>
       </form>
     </div>

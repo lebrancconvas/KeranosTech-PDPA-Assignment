@@ -7,6 +7,7 @@ import './index.css'
 import App from './App.tsx'
 import DataSubjectView from './pages/data_subjects/DataSubjectView.tsx';
 import DataSubjectEditor from './pages/data_subjects/DataSubjectEditor.tsx';
+// import ConsentManager from './pages/data_subjects/ConsentManager.tsx';
 import NotFound from './pages/errors/NotFound.tsx';
 
 const router = createBrowserRouter([
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
   {
     path: "/data-subject/:data_subject_id/edit",
     element: <DataSubjectEditor />
-  }
+  },
+  // {
+  //   path: "/data-subject/:data_subject_id/consent",
+  //   element: <ConsentManager />
+  // }
 ]);
 
 createRoot(document.getElementById('root')!).render(
