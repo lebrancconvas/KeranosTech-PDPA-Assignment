@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createDataSubject, readDataSubjectById, updateDataSubjectById } from '../../services/data-subject.service.js';
+import { getConsentDisplayName } from '../../utils/consentHelper.js';
 import type { ConsentType } from '../../@types/data-subject.interface.js';
 
 const consentTypes: ConsentType[] = ["MARKETING", "SERVICE", "LEGAL", "CONTRACT", "ANALYTICS"];
@@ -30,21 +31,21 @@ function DataSubjectEditor() {
       };
       fetchSubject();
     }
-  }, [data_subject_id]);
+  }, [data_subject_id, formData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
+    setFormData(dataSubject => ({
+      ...dataSubject,
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
   const handleConsentChange = (consentType: ConsentType, checked: boolean) => {
-    setFormData(prev => ({
-        ...prev,
-        consents: prev.consents.map(c => 
-            c.consent_type === consentType ? { ...c, is_consent_active: checked } : c
+    setFormData(dataSubject => ({
+        ...dataSubject,
+        consents: dataSubject.consents.map(consent => 
+            consent.consent_type === consentType ? { ...consent, is_consent_active: checked } : consent
         )
     }));
   };
@@ -88,7 +89,7 @@ function DataSubjectEditor() {
                                 checked={consent.is_consent_active}
                                 onChange={(e) => handleConsentChange(consent.consent_type, e.target.checked)}
                             />
-                            {consent.consent_type}
+                            { getConsentDisplayName(consent.consent_type) }
                         </label>
                     </div>
                 ))}
