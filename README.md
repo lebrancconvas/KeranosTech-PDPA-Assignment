@@ -221,7 +221,12 @@ ref: data_subjects.data_subject_id < data_requests.fk_data_subject_id
 
 ## Known Limitations & Future Improvements
 
-### Improvement
+### Known Limitations
+
+- Understanding about the business domain.
+- Understanding about authentication management.
+
+### Future Improvement
 
 - Finish other requirements (Data Requests, Dashboard, Report, Audit Logs, and Auth)
 - User Interface Improvement (Responsive Design, Night Mode Toggle, Language support)
