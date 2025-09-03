@@ -64,7 +64,7 @@ function DataSubjectView() {
                 <Link to={`/data-subject/${dataSubject.data_subject_id}/consent`}>
                   <button>Manage Consent</button>
                 </Link>
-                <Link to={`/data-subject/edit/${dataSubject.data_subject_id}`}>
+                <Link to={`/data-subject/${dataSubject.data_subject_id}/edit`}>
                   <button>Edit</button>
                 </Link>
                 <button onClick={() => handleDelete(dataSubject.data_subject_id)}>Delete</button>

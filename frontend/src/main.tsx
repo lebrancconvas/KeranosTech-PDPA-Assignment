@@ -20,7 +20,11 @@ const router = createBrowserRouter([
     element: <DataSubjectView />,
   },
   {
-    path: "/data-subject/edit",
+    path: "/data-subject/new",
+    element: <DataSubjectEditor />
+  },
+  {
+    path: "/data-subject/:data_subject_id/edit",
     element: <DataSubjectEditor />
   }
 ]);

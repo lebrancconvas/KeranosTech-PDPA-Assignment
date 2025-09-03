@@ -19,7 +19,7 @@ export const readDataSubjectById = async(dataSubjectID: number) => {
   }
 };
 
-export const createDataSubject = async(dataSubjectWithConsentData: IDataSubjectWithConsent) => {
+export const createDataSubject = async(dataSubjectWithConsentData: Omit<IDataSubjectWithConsent, "data_subject_id" | "consent_record_id">) => {
   const response = await api.post(`/data_subjects`, dataSubjectWithConsentData);
   if(response.data.data) {
     return response.data.data;
