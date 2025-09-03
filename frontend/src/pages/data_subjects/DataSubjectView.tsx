@@ -67,7 +67,7 @@ function DataSubjectView() {
                 <Link to={`/data-subject/${dataSubject.data_subject_id}/edit`}>
                   <button>Edit</button>
                 </Link>
-                <button onClick={() => handleDelete(dataSubject.data_subject_id)}>Delete</button>
+                <button onClick={() => handleDelete(dataSubject.data_subject_id as number)}>Delete</button>
               </td>
             </tr>
           ))}

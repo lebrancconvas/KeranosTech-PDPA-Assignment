@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createDataSubject, readDataSubjectById, updateDataSubjectById } from '../../services/data-subject.service.js';
-import type { ConsentType } from '../../@types/data-subject.types.js';
+import type { ConsentType } from '../../@types/data-subject.interface.js';
 
 // ค่า Consent เริ่มต้นทั้งหมด
 const allConsentTypes: ConsentType[] = ["MARKETING", "SERVICE", "LEGAL", "CONTRACT", "ANALYTICS"];
