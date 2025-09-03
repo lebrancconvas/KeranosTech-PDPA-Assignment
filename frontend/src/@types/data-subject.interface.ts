@@ -1,10 +1,4 @@
-export enum ConsentType {
-  MARKETING = "MARKETING",
-  SERVICE = "SERVICE",
-  LEGAL = "LEGAL",
-  CONTRACT = "CONTRACT",
-  ANALYTICS = "ANALYTICS"
-};
+export type ConsentType = "MARKETING" | "SERVICE" | "LEGAL" | "CONTRACT" | "ANALYTICS";
 
 export interface IConsent {
   consent_record_id: number;
