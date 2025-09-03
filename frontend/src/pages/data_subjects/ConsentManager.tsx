@@ -40,6 +40,14 @@ function ConsentManager() {
             is_consent_active: item.is_consent_active,
           }));
 
+          consentInfo.sort((a: IConsent, b: IConsent) => {
+            if(a.consent_record_id && b.consent_record_id) {
+              return a.consent_record_id - b.consent_record_id;
+            }
+
+            return 0;
+          });
+
           setSubjectWithConsents({ subject: subjectInfo, consents: consentInfo });
         } else {
           return;
