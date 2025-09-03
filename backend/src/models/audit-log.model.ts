@@ -1,10 +1,7 @@
-
-// - (POST) `/audit_logs`
-export const createAuditLogModel = () => {
+export const createAuditLogModel = async () => {
 
 };
 
-// - (GET) `/audit_logs`
-export const readAuditLogsModel = () => {
+export const readAuditLogsModel = async () => {
   
 };

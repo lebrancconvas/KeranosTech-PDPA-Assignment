@@ -1,27 +1,20 @@
 // - **Authentication**
-
-//   - (POST) `/auth/register`
-export const registerNewUserModel = () => {
+export const registerNewUserModel = async () => {
 
 };
 
 
-//   - (POST) `/auth/login`
-export const loginUserModel = () => {
+export const loginUserModel = async () => {
 
 };
 
-/* ********************************************************* */
 
 // - **Users**
-
-//   - (GET) `/users`
-export const readUsersModel = () => {
+export const readUsersModel = async () => {
 
 };
 
-//   - (GET) `/me`
-export const readLoginUserModel = () => {
+export const readLoginUserModel = async () => {
   
 };
 

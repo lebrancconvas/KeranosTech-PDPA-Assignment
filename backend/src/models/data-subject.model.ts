@@ -1,7 +1,6 @@
 import type { IDataSubject, IConsent, IDataSubjectForUpdate } from "../@types/data-subject.interface.js";
 import pool from "../db/db.js";
 
-// - (POST) `/data_subjects`
 export const createDataSubjectModel = async (dataSubject: IDataSubject) => {
   const { national_id, name, email, phone } = dataSubject;
 
@@ -30,7 +29,6 @@ export const createDataSubjectConsentModel = async (fkDataSubjectID: number, con
   return result;
 };
 
-// - (GET) `/data_subjects`
 export const readDataSubjectModel = async () => {
   const query = `
     SELECT national_id, name, email, phone, is_restricted, created_at, updated_at
@@ -41,7 +39,6 @@ export const readDataSubjectModel = async () => {
   return result.rows;
 };
 
-// - (GET) `/data_subjects/<data_subject_id>`
 export const readDataSubjectByIdModel = async (dataSubjectID: number) => {
   const query = `
     SELECT national_id, name, email, phone, is_restricted, created_at, updated_at
@@ -55,7 +52,6 @@ export const readDataSubjectByIdModel = async (dataSubjectID: number) => {
   return result.rows;
 };
 
-// - (PUT) `/data_subjects/<data_subject_id>`
 export const updateDataSubjectByIdModel = async (data_subject_id: number, dataSubjectForUpdate: IDataSubjectForUpdate) => {
   const { name, email, phone, is_restricted } = dataSubjectForUpdate;
 
@@ -70,7 +66,6 @@ export const updateDataSubjectByIdModel = async (data_subject_id: number, dataSu
   await pool.query(query, values);
 };
 
-// - (GET) `/data_subjects/<data_subject_id>/consents`
 export const readDataSubjectConsentByIdModel = async (dataSubjectID: number) => {
   const query = `
     SELECT data_subject_id, national_id, name, email, phone, is_restricted, consent_type, is_consent_active
@@ -85,7 +80,6 @@ export const readDataSubjectConsentByIdModel = async (dataSubjectID: number) => 
   return result.rows;
 };
 
-// - (PUT) `/data_subjects/<data_subject_id>/consents`
 export const updateDataSubjectConsentActiveByIdModel = async (fkDataSubjectID: number, consentData: IConsent) => {
   const { consent_type, is_consent_active } = consentData;
   

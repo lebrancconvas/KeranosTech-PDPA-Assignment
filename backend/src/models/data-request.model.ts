@@ -1,20 +1,15 @@
-
-// - (POST) `/data_requests`
-export const createDataRequestModel = () => {
+export const createDataRequestModel = async () => {
   
 };
 
-// - (GET) `/data_requests`
-export const readDataRequestModel = () => {
+export const readDataRequestModel = async () => {
 
 };
 
-// - (GET) `/data_requests/<request_id>`
-export const readDataRequestByIdModel = () => {
+export const readDataRequestByIdModel = async () => {
 
 };
 
-// - (PUT) `/data_requests/<request_id>/status`
-export const updateDataRequestStatusByIdModel = () => {
+export const updateDataRequestStatusByIdModel = async () => {
 
 };
