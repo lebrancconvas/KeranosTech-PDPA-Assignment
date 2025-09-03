@@ -34,7 +34,7 @@ function DataSubjectEditor() {
       };
       fetchSubject();
     }
-  }, [data_subject_id, formData]);
+  }, [data_subject_id]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
