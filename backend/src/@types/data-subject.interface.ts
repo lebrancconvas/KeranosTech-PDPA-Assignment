@@ -7,11 +7,13 @@ export enum ConsentType {
 };
 
 export interface IConsent {
+  consent_record_id: number;
   consent_type: ConsentType,
   is_consent_active: boolean
 };
 
 export interface IDataSubject {
+  data_subject_id: number;
   national_id: string;
   name: string;
   email: string;

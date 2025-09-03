@@ -20,7 +20,7 @@ import {
 // - (POST) `/data_subjects`
 export const createDataSubjectController = async (req: Request, res: Response) => {  
   try {
-    const { national_id, name, email, phone, consents }: IDataSubjectWithConsent = req.body;
+    const { national_id, name, email, phone, consents }: Omit<IDataSubjectWithConsent, "data_subject_id" | "consent_record_id"> = req.body;
     
     const responseData = await createDataSubjectModel({ national_id, name, email, phone });
     res.status(201).send({ data: `Create data subject success at data_subject_id: ${responseData.rows[0].data_subject_id}` });
@@ -111,7 +111,7 @@ export const updateDataSubjectConsentActiveByIdController = async (req: Request,
     const dataSubjectID = req.params.data_subject_id;
     if(dataSubjectID) {
       const dataSubjectIDInt = parseInt(dataSubjectID);
-      const { consent_type, is_consent_active }: IConsent = req.body;
+      const { consent_type, is_consent_active }: Omit<IConsent, "consent_record_id"> = req.body;
       await updateDataSubjectConsentActiveByIdModel(dataSubjectIDInt, { consent_type, is_consent_active });
       res.status(200).send({ data: `Data Subject Consent: ${consent_type} update at data_subject_id: ${dataSubjectIDInt}` });
     } else {

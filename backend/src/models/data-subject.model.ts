@@ -1,7 +1,7 @@
 import type { IDataSubject, IConsent, IDataSubjectForUpdate } from "../@types/data-subject.interface.js";
 import pool from "../db/db.js";
 
-export const createDataSubjectModel = async (dataSubject: IDataSubject) => {
+export const createDataSubjectModel = async (dataSubject: Omit<IDataSubject, "data_subject_id">) => {
   const { national_id, name, email, phone } = dataSubject;
 
   const query = `
@@ -16,7 +16,7 @@ export const createDataSubjectModel = async (dataSubject: IDataSubject) => {
   return result;
 };
 
-export const createDataSubjectConsentModel = async (fkDataSubjectID: number, consent: IConsent) => {
+export const createDataSubjectConsentModel = async (fkDataSubjectID: number, consent: Omit<IConsent, "consent_record_id">) => {
   const { consent_type, is_consent_active } = consent;
   
   const query = `
@@ -31,7 +31,7 @@ export const createDataSubjectConsentModel = async (fkDataSubjectID: number, con
 
 export const readDataSubjectModel = async () => {
   const query = `
-    SELECT national_id, name, email, phone, is_restricted, created_at, updated_at
+    SELECT data_subject_id, national_id, name, email, phone, is_restricted, created_at, updated_at
     FROM data_subjects
   `;
 
@@ -41,7 +41,7 @@ export const readDataSubjectModel = async () => {
 
 export const readDataSubjectByIdModel = async (dataSubjectID: number) => {
   const query = `
-    SELECT national_id, name, email, phone, is_restricted, created_at, updated_at
+    SELECT data_subject_id, national_id, name, email, phone, is_restricted, created_at, updated_at
     FROM data_subjects
     WHERE data_subject_id = $1
   `;
@@ -68,7 +68,7 @@ export const updateDataSubjectByIdModel = async (data_subject_id: number, dataSu
 
 export const readDataSubjectConsentByIdModel = async (dataSubjectID: number) => {
   const query = `
-    SELECT data_subject_id, national_id, name, email, phone, is_restricted, consent_type, is_consent_active
+    SELECT data_subject_id, national_id, name, email, phone, is_restricted, consent_record_id, consent_type, is_consent_active
     FROM data_subjects
     LEFT JOIN consent_records ON data_subjects.data_subject_id = consent_records.fk_data_subject_id
     WHERE consent_records.fk_data_subject_id = $1;  
@@ -80,7 +80,7 @@ export const readDataSubjectConsentByIdModel = async (dataSubjectID: number) => 
   return result.rows;
 };
 
-export const updateDataSubjectConsentActiveByIdModel = async (fkDataSubjectID: number, consentData: IConsent) => {
+export const updateDataSubjectConsentActiveByIdModel = async (fkDataSubjectID: number, consentData: Omit<IConsent, "consent_record_id">) => {
   const { consent_type, is_consent_active } = consentData;
   
   const query = `
