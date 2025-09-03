@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "2bae2ac6-32b9-48dd-bbb7-b6954cb920ca",
+		"name": "PDPA_System_KeranosTech_Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4049591"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Data Subjects",
+					"item": [
+						{
+							"name": "Create Data Subject",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"national_id\": \"2012312345099\",\r\n    \"name\": \"เล็ก น้อยน้อย\",\r\n    \"email\": \"yaimakmak@email.com\",\r\n    \"phone\": \"0878799981\",\r\n    \"consents\": [\r\n        {\r\n            \"consent_type\": \"MARKETING\",\r\n            \"is_consent_active\": false\r\n        },\r\n        {\r\n            \"consent_type\": \"SERVICE\",\r\n            \"is_consent_active\": false\r\n        },\r\n        {\r\n            \"consent_type\": \"LEGAL\",\r\n            \"is_consent_active\": false\r\n        },\r\n        {\r\n            \"consent_type\": \"CONTRACT\",\r\n            \"is_consent_active\": false\r\n        },\r\n        {\r\n            \"consent_type\": \"ANALYTICS\",\r\n            \"is_consent_active\": true\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURLLocal}}/data_subjects",
+									"host": [
+										"{{baseURLLocal}}"
+									],
+									"path": [
+										"data_subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read All Data Subjects",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"อาจุมม่า โจโฮบารู\",\r\n    \"email\": \"ajumma@email.com\",\r\n    \"phone\": \"0885888992\",\r\n    \"is_restricted\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{baseURLLocal}}/data_subjects",
+									"host": [
+										"{{baseURLLocal}}"
+									],
+									"path": [
+										"data_subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read By Data Subject ID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"national_id\": \"1231231231239\",\r\n    \"name\": \"ชาวบ้าน บ้านโป่ง\",\r\n    \"email\": \"araiwa@email.com\",\r\n    \"phone\": \"0885888879\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseURLLocal}}/data_subjects/3",
+									"host": [
+										"{{baseURLLocal}}"
+									],
+									"path": [
+										"data_subjects",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read Consents",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"national_id\": \"1231231231239\",\r\n    \"name\": \"ชาวบ้าน บ้านโป่ง\",\r\n    \"email\": \"araiwa@email.com\",\r\n    \"phone\": \"0885888879\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseURLLocal}}/data_subjects/9/consents",
+									"host": [
+										"{{baseURLLocal}}"
+									],
+									"path": [
+										"data_subjects",
+										"9",
+										"consents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Data Subjects",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ใหญ่ใหญ่ มากมาก\",\r\n    \"email\": \"yaimakmak@email.com\",\r\n    \"phone\": \"0999999999\",\r\n    \"is_restricted\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURLLocal}}/data_subjects/9",
+									"host": [
+										"{{baseURLLocal}}"
+									],
+									"path": [
+										"data_subjects",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Data Subjects Consent",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"consent_type\": \"ANALYTICS\",\r\n    \"is_consent_active\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURLLocal}}/data_subjects/9/consents",
+									"host": [
+										"{{baseURLLocal}}"
+									],
+									"path": [
+										"data_subjects",
+										"9",
+										"consents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Data Subject By ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"อาจุมม่า โจโฮบารู\",\r\n    \"email\": \"ajumma@email.com\",\r\n    \"phone\": \"0885888992\",\r\n    \"is_restricted\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{baseURLLocal}}/data_subjects/9",
+									"host": [
+										"{{baseURLLocal}}"
+									],
+									"path": [
+										"data_subjects",
+										"9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Health_Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLLocal}}",
+							"host": [
+								"{{baseURLLocal}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dev",
+			"item": [
+				{
+					"name": "Data Subjects",
+					"item": []
+				},
+				{
+					"name": "Health_Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLDev}}",
+							"host": [
+								"{{baseURLDev}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURLLocal",
+			"value": ""
+		},
+		{
+			"key": "baseURLDev",
+			"value": ""
+		}
+	]
+}
