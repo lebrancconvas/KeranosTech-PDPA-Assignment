@@ -14,6 +14,15 @@ Assignment Project for "Full-Stack Developer (Junior)" at "Keranos Tech Co., Ltd
   - Data Subject Feature URL: [https://keranos-pdpa.netlify.app/data-subject](https://keranos-pdpa.netlify.app/data-subject)
 - Back-End (API) URL: [https://keranostech-assignment-pdpa.onrender.com/api](https://keranostech-assignment-pdpa.onrender.com/api)
 
+## Modules
+
+- [frontend](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/tree/master/frontend): Front-End work directory for the project.
+- [backend](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/tree/master/backend): Back-End (API) work directory for the project.
+- [docs](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/tree/master/docs): Documentation directory.
+- [sql](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/tree/master/sql): SQL Script Files directory.
+  - [keranos-pdpa-assignment.sql](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/blob/master/sql/keranos-pdpa-assignment.sql): SQL Script File for creating the data tables for the system database.
+  - [keranos-pdpa-assignment-sample-data.sql](https://github.com/lebrancconvas/KeranosTech-PDPA-Assignment/blob/master/sql/keranos-pdpa-assignment-sample-data.sql): SQL Script File for creating the sample data for the system database.
+
 ## Project Setup (for Local Development)
 
 ### Requirement
