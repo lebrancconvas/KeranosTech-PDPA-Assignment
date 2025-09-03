@@ -1,6 +1,5 @@
 import api from "../api/axios";
-import type { IDataSubject, IDataSubjectWithConsent, IDataSubjectForUpdate, IConsent } from "../../../backend/src/@types/data-subject.interface";
-export type { IDataSubject, IDataSubjectWithConsent, IDataSubjectForUpdate, IConsent };
+import type { IDataSubjectWithConsent, IDataSubjectForUpdate, IConsent } from "../@types/data-subject.interface";
 
 export const readDataSubjects = async() => {
   const response = await api.get(`/data_subjects`);

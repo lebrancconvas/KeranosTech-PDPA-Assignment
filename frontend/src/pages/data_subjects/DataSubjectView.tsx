@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { readDataSubjects, deleteDataSubjectById, type IDataSubject } from "../../services/data-subject.service";
+import { readDataSubjects, deleteDataSubjectById } from "../../services/data-subject.service";
+import type { IDataSubject } from "../../@types/data-subject.interface";
 
 function DataSubjectView() {
   const [dataSubjects, setDataSubjects] = useState<IDataSubject[]>([]);
